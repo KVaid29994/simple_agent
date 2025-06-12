@@ -1,3 +1,7 @@
+🤖 LangChain React Agent with HuggingFace LLM + Tavily Search
+
+
+
 🛠️ Technical Foundations of Agentic Frameworks 🛠️
 
 Agentic frameworks represent a paradigm shift in artificial intelligence, enabling systems to autonomously perform complex tasks through coordinated actions. These frameworks combine large language models (LLMs) with decision-making architectures to create AI agents capable of reasoning, tool utilization, and environmental interaction. This report examines the technical foundations of agentic frameworks and provides practical guidance for implementing basic agents in Python.
@@ -39,3 +43,44 @@ Seamless connectivity with external systems via:
 - Pre-built connectors for common services (CRM, ERP)
 
 - Custom tool development SDKs
+
+
+This project demonstrates how to use LangChain's Zero-Shot React Agent to answer dynamic prompts using a HuggingFace-hosted LLM (google/gemma-2-2b-it) and the Tavily Web Search tool.
+
+📦 What This Does
+It sets up:
+
+A HuggingFace LLM as a chat model
+
+Tavily as a web search tool
+
+A LangChain Zero-Shot ReAct Agent that uses both
+
+The agent is invoked with a prompt like:
+"Make me a tweet about weather in delhi today, where you tell the temperature in day, night and evening with emojis"
+
+🧠 What is a React Agent?
+A ReAct Agent in LangChain is a reasoning agent that follows the ReAct (Reasoning + Acting) pattern:
+
+🔁 Think → Act → Observe → Repeat
+
+In your case:
+
+The agent first reasons about what it needs to do (e.g., find current Delhi weather).
+
+It then uses tools like Tavily to perform actions (web search).
+
+It reads the tool’s output and decides how to form the final answer.
+
+The Zero-Shot React Description variant means:
+
+The agent doesn’t use example demonstrations.
+
+Instead, it uses just the tool descriptions and general reasoning ability to decide how to act.
+
+🛠️ Tools Used
+Tool	Purpose
+HuggingFaceEndpoint	Connects to the hosted google/gemma-2-2b-it LLM on HuggingFace
+ChatHuggingFace	Wraps the HuggingFace model for LangChain use
+TavilySearchResults	Tool that performs web search (via Tavily API)
+initialize_agent()	Creates the agent with tools and reasoning logic
